@@ -7,7 +7,12 @@
       "Bash(Get-Content \"C:\\\\Users\\\\USER\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-USER-Desktop-weddingCece\\\\ceafb19a-34b7-487f-a8d7-540712248a1c\\\\tasks\\\\b8d02bimm.output\" -Tail 20)",
       "Bash(npm uninstall *)",
       "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\USER\\\\Desktop\\\\JanssenVeronicaWedding\" -Directory)",
-      "Bash(Select-Object Name)"
+      "Bash(Select-Object Name)",
+      "Bash(rm package.json)",
+      "Bash(rm package-lock.json)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)"
     ]
   }
 }
