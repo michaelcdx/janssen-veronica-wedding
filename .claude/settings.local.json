@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(Start-Sleep -Seconds 3)",
+      "Bash(Get-Content \"C:\\\\Users\\\\USER\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-USER-Desktop-weddingCece\\\\ceafb19a-34b7-487f-a8d7-540712248a1c\\\\tasks\\\\b8d02bimm.output\" -Tail 20)",
+      "Bash(npm uninstall *)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\USER\\\\Desktop\\\\JanssenVeronicaWedding\" -Directory)",
+      "Bash(Select-Object Name)"
+    ]
+  }
+}
