@@ -37,7 +37,7 @@ function App() {
     setIsSubmitting(true);
     try {
       const response = await fetch(
-        'https://script.google.com/macros/s/AKfycbxSxdpml_yhwgaKS_kTMlzL7IeKOhbPSMSzfvKXblQ88SCGSeAOcZXKV7RIEaZDdqLJ6w/exec',
+        'https://script.google.com/macros/s/AKfycbwMKiKxnKKWibzEeDT53ckXYFtV9DWe5Uhs-9u0fwdYu_McaiV5_aT9cvTZ5GTRKYX-Sw/exec',
         {
           method: 'POST',
           body: JSON.stringify({
