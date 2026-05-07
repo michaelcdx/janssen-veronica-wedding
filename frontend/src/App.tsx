@@ -9,6 +9,7 @@ function App() {
   const [rsvpData, setRsvpData] = useState({ name: '', message: '' });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [nameError, setNameError] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const { scrollY } = useScroll();
   
@@ -17,16 +18,38 @@ function App() {
   const heroScale = useTransform(scrollY, [0, 500], [1, 1.1]);
   const contentY = useTransform(scrollY, [0, 500], [0, -100]);
 
-  const handleRSVPSubmit = (e: React.FormEvent) => {
+  const handleRSVPSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!rsvpData.name.trim()) {
       setNameError(true);
-      // Scroll to RSVP if needed, but error highlight is usually enough
       return;
     }
-    
-    // Simulate submission
-    setIsSubmitted(true);
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch(
+        'https://script.google.com/macros/s/AKfycbxSxdpml_yhwgaKS_kTMlzL7IeKOhbPSMSzfvKXblQ88SCGSeAOcZXKV7RIEaZDdqLJ6w/exec',
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            name: rsvpData.name,
+            message: rsvpData.message
+          })
+        }
+      );
+
+      const result = await response.json();
+      if (result.status === 'success') {
+        setIsSubmitted(true);
+      } else {
+        alert('Terjadi kesalahan. Silakan coba lagi.');
+      }
+    } catch (error) {
+      console.error('Error submitting RSVP:', error);
+      alert('Terjadi kesalahan jaringan. Silakan coba lagi.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   useEffect(() => {
@@ -318,13 +341,14 @@ function App() {
               </div>
             </div>
             
-            <button 
+            <button
               type="submit"
-              className="relative w-full py-6 group overflow-hidden border border-white/10"
+              disabled={isSubmitting}
+              className="relative w-full py-6 group overflow-hidden border border-white/10 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
               <span className="relative z-10 text-white group-hover:text-black font-bold tracking-[0.4em] uppercase text-xs transition-colors duration-500">
-                Konfirmasi Kehadiran
+                {isSubmitting ? 'Mengirim...' : 'Konfirmasi Kehadiran'}
               </span>
             </button>
           </form>
